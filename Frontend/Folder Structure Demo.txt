@@ -1,0 +1,44 @@
+frontend/
+│── public/                     # Static assets (index.html, images)
+│── src/
+│   │── assets/                  # Images, icons
+│   │── components/               # Reusable UI components
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   ├── Map.js
+│   │   ├── WeatherAlert.js
+│   │   ├── ImageUpload.js
+│   │
+│   │── pages/                    # Page components
+│   │   ├── Home.js
+│   │   ├── Itinerary.js
+│   │   ├── MapView.js
+│   │   ├── Weather.js
+│   │   ├── Blog.js
+│   │   ├── ImageSearch.js
+│   │   ├── Vlog.js
+│   │
+│   │── api/                      # API interaction (fetch)
+│   │   ├── authAPI.js
+│   │   ├── itineraryAPI.js
+│   │   ├── mapAPI.js
+│   │   ├── weatherAPI.js
+│   │   ├── blogAPI.js
+│   │   ├── imageAPI.js
+│   │   ├── vlogAPI.js
+│   │
+│   │── hooks/                    # Custom React hooks
+│   │   ├── useAuth.js
+│   │   ├── useWeather.js
+│   │
+│   │── context/                  # Global state management (Context API)
+│   │   ├── AuthContext.js
+│   │   ├── WeatherContext.js
+│   │
+│   │── App.js                     # Main app component
+│   │── index.js                   # React DOM entry point
+│── .env                           # Frontend environment variables
+│── package.json                   # Dependencies & scripts
+│── tailwind.config.js              # Tailwind CSS config
+│── Dockerfile                      # (Optional) Docker container
+│── README.md

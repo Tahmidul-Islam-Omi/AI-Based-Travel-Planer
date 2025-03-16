@@ -1,0 +1,48 @@
+backend/
+│── src/
+│   │── config/            # Configuration files (DB, APIs, Auth)
+│   │   ├── db.js          # PostgreSQL connection
+│   │   ├── openai.js      # OpenAI API config
+│   │   ├── weather.js     # Weather API config
+│   │   ├── googleMaps.js  # Google Maps API config
+│   │
+│   │── models/            # Database models (tables)
+│   │   ├── User.js
+│   │   ├── Itinerary.js
+│   │   ├── Location.js
+│   │   ├── Blog.js
+│   │   ├── Image.js
+│   │
+│   │── routes/            # Express.js API routes
+│   │   ├── authRoutes.js      # Login, Signup, JWT Auth
+│   │   ├── itineraryRoutes.js # Itinerary generation
+│   │   ├── mapRoutes.js       # Map-related data
+│   │   ├── weatherRoutes.js   # Weather updates
+│   │   ├── blogRoutes.js      # Trip blog generation
+│   │   ├── imageRoutes.js     # Image upload & search
+│   │   ├── vlogRoutes.js      # Automated travel vlog
+│   │
+│   │── controllers/       # Business logic
+│   │   ├── authController.js
+│   │   ├── itineraryController.js
+│   │   ├── mapController.js
+│   │   ├── weatherController.js
+│   │   ├── blogController.js
+│   │   ├── imageController.js
+│   │   ├── vlogController.js
+│   │
+│   │── middleware/        # Middleware (Auth, Validation)
+│   │   ├── authMiddleware.js
+│   │   ├── errorHandler.js
+│   │
+│   │── utils/             # Utility functions
+│   │   ├── logger.js
+│   │   ├── aiHelper.js    # AI API calls
+│   │   ├── fileUpload.js  # Image upload handling
+│   │
+│   │── index.js           # Main server file (Express app)
+│── .env                   # Environment variables
+│── package.json           # Dependencies & scripts
+│── nodemon.json           # Auto-restart server
+│── Dockerfile             # (Optional) Docker container
+│── README.md
