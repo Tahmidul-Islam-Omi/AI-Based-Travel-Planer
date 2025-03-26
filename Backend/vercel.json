@@ -11,10 +11,5 @@
             "src": "/(.*)",
             "dest": "src/index.js"
         }
-    ],
-    "env": {
-        "DB_CONNECTION_STRING": "@db_connection_string",
-        "JWT_SECRET": "@jwt_secret",
-        "PORT": "3001"
-    }
+    ]
 }
