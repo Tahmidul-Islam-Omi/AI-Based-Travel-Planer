@@ -24,19 +24,19 @@ const TourForm = ({ onSubmit }) => {
 
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, value) => {
     setFormData({
       ...formData,
       [name]: value
     });
   };
 
+  const handleInputChange = (e) => {
+    handleChange(e.target.name, e.target.value);
+  };
+
   const handleDateChange = (name, date) => {
-    setFormData({
-      ...formData,
-      [name]: date
-    });
+    handleChange(name, date);
   };
 
   const validateForm = () => {
@@ -96,7 +96,7 @@ const TourForm = ({ onSubmit }) => {
           name="destination"
           label="Destination"
           value={formData.destination}
-          onChange={handleChange}
+          onChange={handleInputChange}
           error={!!errors.destination}
           helperText={errors.destination}
           InputProps={{
@@ -169,7 +169,7 @@ const TourForm = ({ onSubmit }) => {
           label="Budget (Optional)"
           type="number"
           value={formData.budget}
-          onChange={handleChange}
+          onChange={handleInputChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -189,7 +189,7 @@ const TourForm = ({ onSubmit }) => {
           multiline
           rows={4}
           value={formData.additionalInfo}
-          onChange={handleChange}
+          onChange={handleInputChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

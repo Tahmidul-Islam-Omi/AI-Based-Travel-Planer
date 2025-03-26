@@ -1,6 +1,16 @@
 const express = require('express');
-const { connectDB } = require('./db/connection'); // Import the connectDB function
+const cors = require('cors');
+const { connectDB } = require('./db/connection');
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/api/v1/auth', authRoutes);
 
 const startServer = async () => {
     await connectDB(); // Ensure database is connected before starting the server

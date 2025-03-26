@@ -1,20 +1,20 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+// Create a new pool configured for Supabase
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    connectionString: process.env.DB_CONNECTION_STRING,
+    ssl: {
+        rejectUnauthorized: false // Required for Supabase connections
+    }
 });
 
 const connectDB = async () => {
     try {
         await pool.connect();
-        console.log('Database connected successfully');
+        console.log('Supabase database connected successfully');
     } catch (err) {
-        console.error('Database connection error', err.stack);
+        console.error('Supabase database connection error', err.stack);
         process.exit(1); // Exit process with failure
     }
 };
