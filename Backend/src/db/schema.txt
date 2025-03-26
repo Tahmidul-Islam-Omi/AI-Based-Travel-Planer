@@ -1,0 +1,65 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE trips (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    destination VARCHAR(100) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    budget DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE itinerary (
+    id SERIAL PRIMARY KEY,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE,
+    day INT NOT NULL,
+    activity TEXT NOT NULL,
+    transport_option TEXT,
+    accommodation_option TEXT,
+    meal_plan TEXT,
+    estimated_cost DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE weather_forecast (
+    id SERIAL PRIMARY KEY,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    temperature DECIMAL(5,2),
+    condition VARCHAR(50),
+    alert TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE trip_blogs (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE images (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE,
+    image_url TEXT NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE travel_vlogs (
+    id SERIAL PRIMARY KEY,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE,
+    video_url TEXT NOT NULL,
+    background_music TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

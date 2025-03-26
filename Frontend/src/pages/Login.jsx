@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
+import { Email, Lock, Visibility, VisibilityOff } from '@mui/icons-material';
 import {
+    Alert,
     Box,
     Button,
     Container,
-    TextField,
-    Typography,
-    Paper,
-    Link,
-    InputAdornment,
     IconButton,
-    Alert,
-    Snackbar
+    InputAdornment,
+    Link,
+    Paper,
+    Snackbar,
+    TextField,
+    Typography
 } from '@mui/material';
-import { Email, Lock, Visibility, VisibilityOff } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 // Update the import to include Link from react-router-dom
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // Update imports to include useAuth
 import { useAuth } from '../context/AuthContext';
 
@@ -66,25 +66,25 @@ const Login = () => {
     // Inside the Login component:
     // Remove this duplicate declaration:
     // const { login } = useAuth();
-    
+
     // Update the handleSubmit function:
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (validateForm()) {
             // Call the login function from AuthContext
-            const result = await login({ 
+            const result = await login({
                 email: formData.email,
                 password: formData.password
             });
-            
+
             if (result.success) {
                 setSnackbar({
                     open: true,
                     message: 'Login successful!',
                     severity: 'success'
                 });
-                
+
                 // Navigate to TourPlanner after a short delay
                 setTimeout(() => {
                     navigate('/tour-planner');
