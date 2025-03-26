@@ -9,6 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Default welcome route
+app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to the AI Based Travel Planner App' });
+});
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
 
