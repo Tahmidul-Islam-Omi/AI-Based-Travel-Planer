@@ -2,22 +2,10 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 
-// Load environment variables
+// Make sure you're loading environment variables at the top of the file
 require('dotenv').config();
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (error) {
-        done(error, null);
-    }
-});
-
+// Then verify that you're using the environment variables correctly
 passport.use(
     new GoogleStrategy(
         {

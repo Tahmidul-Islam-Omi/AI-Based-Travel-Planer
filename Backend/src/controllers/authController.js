@@ -8,7 +8,7 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET || 'e8f4b5c7a3d6b9f2e1a7d4c8b5a2e9f6';
 
 // Register a new user
-exports.register = async (req, res) => {
+const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         console.log(req.body);
@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
 };
 
 // Login user
-exports.login = async (req, res) => {
+const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -89,7 +89,7 @@ exports.login = async (req, res) => {
 };
 
 // Get current user profile
-exports.getCurrentUser = async (req, res) => {
+const getCurrentUser = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
         if (!user) {
@@ -110,7 +110,6 @@ exports.getCurrentUser = async (req, res) => {
     }
 };
 
-// Add this function to your existing authController.js
 const googleAuthCallback = (req, res) => {
     // Generate JWT token for the authenticated user
     const token = jwt.sign(
@@ -123,8 +122,10 @@ const googleAuthCallback = (req, res) => {
     res.redirect(`${process.env.FRONTEND_URL}/auth/google/success?token=${token}`);
 };
 
-// Export the new function
+// Export the functions
 module.exports = {
-    // ... existing exports
+    register,
+    login,
+    getCurrentUser,
     googleAuthCallback
 };
