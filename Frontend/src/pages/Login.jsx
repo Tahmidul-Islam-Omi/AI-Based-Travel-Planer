@@ -226,7 +226,7 @@ const Login = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<GoogleIcon />}
-                        onClick={() => window.location.href = 'https://voyagebot-git-main-tahmidul-islam-omis-projects.vercel.app/api/v1/auth/google'}
+                        onClick={() => window.location.href = 'https://voyagebot.vercel.app/api/v1/auth/google'}
                         sx={{
                             mt: 2,
                             py: 1.5,
