@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { CircularProgress, Box, Typography } from '@mui/material';
 
 const GoogleAuthCallback = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { setIsAuthenticated, setUser } = useAuth();
+    // Remove the unused auth hook entirely
     
     useEffect(() => {
-        const handleGoogleAuth = () => {
+        const handleGoogleAuth = async () => {
             const params = new URLSearchParams(location.search);
             const token = params.get('token');
             
@@ -17,12 +16,12 @@ const GoogleAuthCallback = () => {
                 // Save token to localStorage
                 localStorage.setItem('token', token);
                 
-                // Fetch user info or decode JWT to get user data
-                // For simplicity, we'll just set authenticated state
-                setIsAuthenticated(true);
-                
-                // Redirect to tour planner
-                navigate('/tour-planner');
+                // Redirect to tour planner after a short delay
+                setTimeout(() => {
+                    navigate('/tour-planner');
+                    // Force a page reload to ensure the auth state is updated
+                    window.location.reload();
+                }, 1000);
             } else {
                 // Handle error
                 navigate('/login');
@@ -30,7 +29,7 @@ const GoogleAuthCallback = () => {
         };
         
         handleGoogleAuth();
-    }, [location, navigate, setIsAuthenticated, setUser]);
+    }, [location, navigate]);
     
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
