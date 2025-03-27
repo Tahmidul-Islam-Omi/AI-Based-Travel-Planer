@@ -109,3 +109,22 @@ exports.getCurrentUser = async (req, res) => {
         res.status(500).json({ message: 'Server error while fetching user data' });
     }
 };
+
+// Add this function to your existing authController.js
+const googleAuthCallback = (req, res) => {
+    // Generate JWT token for the authenticated user
+    const token = jwt.sign(
+        { userId: req.user.id },
+        process.env.JWT_SECRET || 'e8f4b5c7a3d6b9f2e1a7d4c8b5a2e9f6',
+        { expiresIn: '1d' }
+    );
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.FRONTEND_URL}/auth/google/success?token=${token}`);
+};
+
+// Export the new function
+module.exports = {
+    // ... existing exports
+    googleAuthCallback
+};

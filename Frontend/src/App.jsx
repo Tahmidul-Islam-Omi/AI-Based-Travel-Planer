@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import TourPlanner from './pages/TourPlanner';
+import GoogleAuthCallback from './pages/GoogleAuthCallback';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/tour-planner" element={<TourPlanner />} />
+            <Route path="/auth/google/success" element={<GoogleAuthCallback />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </Router>

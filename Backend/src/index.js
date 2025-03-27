@@ -1,13 +1,30 @@
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
+const passport = require('./config/passport');
 const { connectDB } = require('./db/connection');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    credentials: true
+}));
 app.use(express.json());
+
+// Session configuration
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'session-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: process.env.NODE_ENV === 'production' }
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Default welcome route
 app.get('/', (req, res) => {

@@ -4,8 +4,10 @@ class User {
     // Create a new user
     static async create(name, email, passwordHash) {
         try {
-            const query = 'INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3) RETURNING id, name, email, created_at';
-            const values = [name, email, passwordHash];
+            // If passwordHash is null (Google auth), set a placeholder
+            const query = 'INSERT INTO users (name, email, password_hash, is_google_user) VALUES ($1, $2, $3, $4) RETURNING id, name, email, created_at';
+            const isGoogleUser = passwordHash === null;
+            const values = [name, email, passwordHash || '', isGoogleUser];
             const result = await pool.query(query, values);
             return result.rows[0];
         } catch (error) {

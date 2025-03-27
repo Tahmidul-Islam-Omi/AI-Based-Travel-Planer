@@ -17,6 +17,8 @@ import { useEffect, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // Update imports to include useAuth
 import { useAuth } from '../context/AuthContext';
+// Add this import
+import GoogleIcon from '@mui/icons-material/Google';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -119,14 +121,7 @@ const Login = () => {
 
     return (
         <Container maxWidth="sm" sx={{ py: 8 }}>
-            <Paper
-                elevation={3}
-                sx={{
-                    p: 4,
-                    borderRadius: 2,
-                    background: 'linear-gradient(to right bottom, #ffffff, #f8f9fa)'
-                }}
-            >
+            <Paper elevation={3} sx={{ p: 4, borderRadius: 2, background: 'linear-gradient(to right bottom, #ffffff, #f8f9fa)' }}>
                 <Typography
                     variant="h4"
                     component="h1"
@@ -204,6 +199,7 @@ const Login = () => {
                         sx={{ mb: 3 }}
                     />
 
+                    {/* Regular sign in button */}
                     <Button
                         type="submit"
                         fullWidth
@@ -224,7 +220,29 @@ const Login = () => {
                         {loading ? 'Signing In...' : 'Sign In'}
                     </Button>
 
-                    {/* Remove the comment below */}
+                    {/* Google sign in button */}
+                    <Button
+                        fullWidth
+                        variant="outlined"
+                        size="large"
+                        startIcon={<GoogleIcon />}
+                        onClick={() => window.location.href = 'https://voyagebot-git-main-tahmidul-islam-omis-projects.vercel.app/api/v1/auth/google'}
+                        sx={{
+                            mt: 2,
+                            py: 1.5,
+                            borderRadius: 2,
+                            borderColor: '#4285F4',
+                            color: '#4285F4',
+                            '&:hover': {
+                                borderColor: '#3367D6',
+                                backgroundColor: 'rgba(66, 133, 244, 0.04)',
+                            }
+                        }}
+                    >
+                        Sign in with Google
+                    </Button>
+
+                    {/* Sign up link */}
                     <Box sx={{ mt: 3, textAlign: 'center' }}>
                         <Typography variant="body2">
                             Don't have an account?{' '}
