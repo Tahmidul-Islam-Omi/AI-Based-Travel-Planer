@@ -1,9 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
 // Update the API_URL to point to the deployed backend
-const API_URL = 'https://voyagebot-git-main-tahmidul-islam-omis-projects.vercel.app/api/v1/auth';
+const API_URL = 'https://voyagebot.vercel.app/api/v1/auth';
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
